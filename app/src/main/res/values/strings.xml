@@ -4,4 +4,8 @@
     <string name="helio">Hello!</string>
     <string name="test001">Happy Birthday!</string>
     <string name="test002">Yours Jerry</string>
+    <string name="test003">commit</string>
+    <string name="tesr004">INPUT</string>
+    <string name="test005">temperature</string>
+    <string name="text006">values of temperature</string>
 </resources>

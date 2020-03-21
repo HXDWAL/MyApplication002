@@ -5,4 +5,8 @@
     <string name="helio">你好</string>
     <string name="test001">生日快乐！</string>
     <string name="test002">你亲爱的杰瑞</string>
+    <string name="test003">提交</string>
+    <string name="tesr004">请输入</string>
+    <string name="test005">目标单位</string>
+    <string name="text006">请输入温度值</string>
 </resources>

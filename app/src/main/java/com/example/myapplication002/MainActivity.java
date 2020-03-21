@@ -5,51 +5,60 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.EditText;
+import android.view.View;
+import java.math.*;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        TextView t=(TextView)findViewById(R.id.textView);
+        t.setText("");
+
+        EditText e=(EditText)findViewById(R.id.editText);
+        String str1=e.getText().toString();
+
+        EditText e2=(EditText)findViewById(R.id.editText02);
+        String str2=e2.getText().toString();
+
+        Button btn=(Button)findViewById(R.id.button);
+        btn.setOnClickListener(this);
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    public void onClick(View v) {
+        TextView t=(TextView)findViewById(R.id.textView);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        EditText e=(EditText)findViewById(R.id.editText);
+        String str1=e.getText().toString();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        EditText e2=(EditText)findViewById(R.id.editText02);
+        String str2=e2.getText().toString();
+
+        if(str2.equals("华氏")){
+           long a=Long.parseLong(str1);
+            double b=1.8*a+32;
+            t.setText(a+"°C"+"转化为华氏温度是"+b+"°F");
+        }else{
+            long a=Long.parseLong(str1);
+            double b=(a-32)/1.8;
+            long c=Math.round(b);
+            t.setText(a+"°F"+"转化为摄氏温度是"+c+"°C");
+
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
