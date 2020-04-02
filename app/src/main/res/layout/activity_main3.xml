@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main3Activity">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="180dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstraintLayout01"
+            android:layout_width="wrap_content"
+            android:layout_height="567dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/TeamA"
+                android:layout_width="144dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="47dp"
+                android:layout_marginLeft="47dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="47dp"
+                android:layout_marginRight="47dp"
+                android:layout_marginBottom="86dp"
+                android:text="TeamA"
+                app:layout_constraintBottom_toTopOf="@+id/score"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="166dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginEnd="47dp"
+                android:layout_marginRight="47dp"
+                android:layout_marginBottom="26dp"
+                android:text="0"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/btnonepoint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.702" />
+
+            <Button
+                android:id="@+id/btnonepoint"
+                android:layout_width="139dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="177dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="30dp"
+                android:onClick="btnAdd1"
+                android:text="@string/text009"
+                app:layout_constraintBottom_toTopOf="@+id/btntwopoints"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamA"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/btntwopoints"
+                android:layout_width="139dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="267dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="23dp"
+                android:onClick="btnAdd2"
+                android:text="@string/text010"
+                app:layout_constraintBottom_toTopOf="@+id/btnthreepoints"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamA" />
+
+            <Button
+                android:id="@+id/btnthreepoints"
+                android:layout_width="139dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="352dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:onClick="btnAdd3"
+                android:text="@string/text011"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamA" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstraintLayout02"
+            android:layout_width="wrap_content"
+            android:layout_height="567dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/TeamB"
+                android:layout_width="144dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="47dp"
+                android:layout_marginLeft="47dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="47dp"
+                android:layout_marginRight="47dp"
+                android:layout_marginBottom="86dp"
+                android:text="TeamB"
+                app:layout_constraintBottom_toTopOf="@+id/score1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/score1"
+                android:layout_width="166dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginEnd="47dp"
+                android:layout_marginRight="47dp"
+                android:layout_marginBottom="26dp"
+                android:text="0"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/btnonepoint1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.702" />
+
+            <Button
+                android:id="@+id/btnonepoint1"
+                android:layout_width="139dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="177dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="30dp"
+                android:onClick="btnAdd1b"
+                android:text="@string/text009"
+                app:layout_constraintBottom_toTopOf="@+id/btntwopoints1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamB"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/btntwopoints1"
+                android:layout_width="139dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="267dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="23dp"
+                android:onClick="btnAdd2b"
+                android:text="@string/text010"
+                app:layout_constraintBottom_toTopOf="@+id/btnthreepoints1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamB" />
+
+            <Button
+                android:id="@+id/btnthreepoints1"
+                android:layout_width="139dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="352dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:onClick="btnAdd3b"
+                android:text="@string/text011"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TeamB" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="152dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="177dp"
+        android:layout_marginLeft="177dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginRight="177dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="btnReset"
+        android:text="@string/text012"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

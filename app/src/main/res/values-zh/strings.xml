@@ -9,4 +9,10 @@
     <string name="tesr004">请输入</string>
     <string name="test005">目标单位</string>
     <string name="text006">请输入温度值</string>
+    <string name="text009">一分球</string>
+    <string name="text010">两分球</string>
+    <string name="text011">三分球</string>
+    <string name="text012">重置</string>
+    <string name="text013">" "</string>
+    <string name="Open">打开新窗口</string>
 </resources>

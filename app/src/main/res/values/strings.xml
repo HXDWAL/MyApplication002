@@ -8,4 +8,10 @@
     <string name="tesr004">INPUT</string>
     <string name="test005">temperature</string>
     <string name="text006">values of temperature</string>
+    <string name="text009">one point</string>
+    <string name="text010">two points</string>
+    <string name="text011">three points</string>
+    <string name="text012">RESET</string>
+    <string name="text013">team</string>
+    <string name="Open">OPEN</string>
 </resources>
