@@ -14,4 +14,9 @@
     <string name="text012">RESET</string>
     <string name="text013">team</string>
     <string name="Open">OPEN</string>
+    <string name="RMB">RMB</string>
+    <string name="INPUT">INPUT</string>
+    <string name="DOLLAR">Dollar</string>
+    <string name="EURO">Euro</string>
+    <string name="POUND">Pound</string>
 </resources>
