@@ -60,4 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(points);
 
     }
+    public void OpenActivity2(View btn){
+        Intent currency=new Intent(this,Main2Activity.class);
+        startActivity(currency);
+    }
 }

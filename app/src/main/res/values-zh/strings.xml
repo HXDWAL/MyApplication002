@@ -14,10 +14,11 @@
     <string name="text011">三分球</string>
     <string name="text012">重置</string>
     <string name="text013">" "</string>
-    <string name="Open">打开新窗口</string>
     <string name="RMB">人民币</string>
     <string name="INPUT">请输入</string>
     <string name="DOLLAR">美元</string>
     <string name="EURO">欧元</string>
     <string name="POUND">英镑</string>
+    <string name="Open1">打开新窗口2</string>
+    <string name="Open2">打开新窗口3</string>
 </resources>

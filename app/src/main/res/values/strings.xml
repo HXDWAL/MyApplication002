@@ -13,7 +13,8 @@
     <string name="text011">three points</string>
     <string name="text012">RESET</string>
     <string name="text013">team</string>
-    <string name="Open">OPEN</string>
+    <string name="Open1">OPEN ACT2</string>
+    <string name="Open2">OPEN ACT3</string>
     <string name="RMB">RMB</string>
     <string name="INPUT">INPUT</string>
     <string name="DOLLAR">Dollar</string>
