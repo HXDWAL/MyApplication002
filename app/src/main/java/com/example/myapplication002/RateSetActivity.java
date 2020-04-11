@@ -22,9 +22,9 @@ public class RateSetActivity extends AppCompatActivity {
         PoundRate=(EditText)findViewById(R.id.poundRate);
 
         Intent intent=getIntent();
-        Float Dor=intent.getFloatExtra("rate_of_Dollar",0.0f);
-        Float Eur=intent.getFloatExtra("rate_od_Euro",0.0f);
-        Float Pnd=intent.getFloatExtra("rate_of_Pound",0.0f);
+        float Dor=intent.getFloatExtra("rate_of_Dollar",0.0f);
+        float Eur=intent.getFloatExtra("rate_od_Euro",0.0f);
+        float Pnd=intent.getFloatExtra("rate_of_Pound",0.0f);
         //接收数据
 
         DollarRate.setText(String.valueOf(Dor));
@@ -35,6 +35,21 @@ public class RateSetActivity extends AppCompatActivity {
 
     }
     public void UpdateRate(View btn){
+        float newDollar=Float.parseFloat(DollarRate.getText().toString());
+        float newEuro=Float.parseFloat(EuroRate.getText().toString());
+        float newPound=Float.parseFloat(PoundRate.getText().toString());
+        //获取新的值
+
+        Intent intent=getIntent();
+        Bundle bundle=new Bundle();
+        bundle.putFloat("key_Dollar",newDollar);
+        bundle.putFloat("key_Euro",newEuro);
+        bundle.putFloat("key_Pound",newPound);
+        intent.putExtras(bundle);
+        setResult(2,intent);
+        finish();
+        //返回原页面
+
 
 
     }

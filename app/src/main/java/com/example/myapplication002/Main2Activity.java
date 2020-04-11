@@ -59,7 +59,8 @@ public class Main2Activity extends AppCompatActivity {
         set.putExtra("rate_of_Euro",EuroRate);
         set.putExtra("rate_of_Pound",PoundRate);
 
-        startActivity(set);
+       // startActivity(set);
+        startActivityForResult(set,1);
 
 
     }
