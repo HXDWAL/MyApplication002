@@ -21,4 +21,7 @@
     <string name="POUND">英镑</string>
     <string name="Open1">打开新窗口2</string>
     <string name="Open2">打开新窗口3</string>
+    <string name="SET">设置</string>
+    <string name="SAVE">保存</string>
+    <string name="BACK">返回</string>
 </resources>

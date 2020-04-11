@@ -20,4 +20,7 @@
     <string name="DOLLAR">Dollar</string>
     <string name="EURO">Euro</string>
     <string name="POUND">Pound</string>
+    <string name="SET">Set</string>
+    <string name="SAVE">Save</string>
+    <string name="BACK">Back</string>
 </resources>
