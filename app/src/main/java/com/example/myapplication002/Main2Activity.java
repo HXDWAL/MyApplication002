@@ -65,4 +65,17 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent date){
+        if(requestCode==1&&resultCode==2){
+            Bundle bundle=date.getExtras();
+            DollarRate=bundle.getFloat("key_Dollar");
+            EuroRate=bundle.getFloat("key_Euro");
+            PoundRate=bundle.getFloat("key_Pound");
+
+
+        }
+        super.onActivityResult(requestCode,resultCode,date);
+    }
+
 }

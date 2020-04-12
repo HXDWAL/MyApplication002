@@ -54,9 +54,4 @@ public class RateSetActivity extends AppCompatActivity {
 
     }
 
-    public void Back(View btn){
-        Intent back=new Intent(this,Main2Activity.class);
-        startActivity(back);
-
-    }
 }
