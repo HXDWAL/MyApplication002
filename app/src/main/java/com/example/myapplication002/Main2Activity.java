@@ -1,7 +1,11 @@
 package com.example.myapplication002;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,22 +13,44 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements Runnable{
     EditText rmb;
     TextView currency;
-    private Float DollarRate=(1/6.5f);
-    private Float EuroRate=(1/10f);
-    private  Float PoundRate=(1/8f);
+    private Float DollarRate;
+    private Float EuroRate;
+    private  Float PoundRate;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        rmb=(EditText)findViewById(R.id.RMB);
-        currency=(TextView)findViewById(R.id.Currency);
+        rmb = (EditText) findViewById(R.id.RMB);
+        currency = (TextView) findViewById(R.id.Currency);
 
+        SharedPreferences share = getSharedPreferences("MyRate", Activity.MODE_PRIVATE);
+        DollarRate = share.getFloat("Dollar_Rate", 0.0f);
+        EuroRate = share.getFloat("Euro_Rate", 0.0f);
+        PoundRate = share.getFloat("Pound_Rate", 0.0f);
+
+        //开启子线程
+        Thread t = new Thread(this);
+        t.start();
+
+        handler = new Handler() {
+            public void handerMessage(Message msg) {
+
+                if (msg.what == 5) {
+                    String str = (String) msg.obj;
+                }
+                super.handleMessage(msg);
+            }
+
+        };
     }
+
+
 
     public void onClick(View btn){
 
@@ -73,9 +99,37 @@ public class Main2Activity extends AppCompatActivity {
             EuroRate=bundle.getFloat("key_Euro");
             PoundRate=bundle.getFloat("key_Pound");
 
+            SharedPreferences sp=getSharedPreferences("MyRate",Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putFloat("Dollar_Rate",DollarRate);
+            editor.putFloat("Euro_Rate",EuroRate);
+            editor.putFloat("Pound_Rate",PoundRate);
+            editor.commit();
+
+
+
 
         }
         super.onActivityResult(requestCode,resultCode,date);
+    }
+
+    @Override
+    public void run(){
+        for(int i=1;i<6;i++){
+          try {
+              Thread.sleep(1000);
+          }catch(InterruptedException e){
+              e.printStackTrace();
+          }
+        }
+        //获取Message对象，用于返回主线程
+        Message msg=handler.obtainMessage();
+        msg.what=5;
+        msg.obj="Hello World!";
+        handler.sendMessage(msg);
+
+
+
     }
 
 }
