@@ -1,5 +1,6 @@
 package com.example.myapplication002;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 public class Main2Activity extends AppCompatActivity implements Runnable{
     EditText rmb;
     TextView currency;
@@ -20,7 +31,9 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
     private Float EuroRate;
     private  Float PoundRate;
     Handler handler;
+    Bundle bundle;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +47,19 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
         EuroRate = share.getFloat("Euro_Rate", 0.0f);
         PoundRate = share.getFloat("Pound_Rate", 0.0f);
 
+
         //开启子线程
         Thread t = new Thread(this);
         t.start();
-
         handler = new Handler() {
             public void handerMessage(Message msg) {
-
                 if (msg.what == 5) {
-                    String str = (String) msg.obj;
+                   Bundle b=(Bundle)msg.obj;
+                   DollarRate=b.getFloat("Dollar_Rate");
+                   EuroRate=b.getFloat("Euro_Rate");
+                   PoundRate=b.getFloat("Pound_Rate");
+
+                   Toast.makeText(Main2Activity.this,"汇率已更新！",Toast.LENGTH_SHORT).show();
                 }
                 super.handleMessage(msg);
             }
@@ -122,14 +139,68 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
               e.printStackTrace();
           }
         }
-        //获取Message对象，用于返回主线程
-        Message msg=handler.obtainMessage();
-        msg.what=5;
-        msg.obj="Hello World!";
-        handler.sendMessage(msg);
+
+       /* URL url=null;
+        try{
+            url=new URL("http://www.usd-cny.com/icbc.htm");
+            HttpURLConnection http =(HttpURLConnection)url.openConnection();
+            InputStream in=http.getInputStream();
+
+            String html=inputStreamString(in);
+
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }*/
+
+        Document doc=null;
+        try{
+
+            doc= Jsoup.connect("www.usd-cny.com/bankofchina.htm").get();
+            Elements tables=doc.getElementsByTag("table");
+
+            Element table6=tables.get(5);
+            Elements tds=table6.getElementsByTag("td");
+            for(int i=0;i<tds.size();i+=8){
+                Element td1=tds.get(i);
+                Element td2=tds.get(i+5);
+                String str=td1.text();
+                String value=td2.text();
+
+                if(str.equals("美元")){
+                    bundle.putFloat("Dollar_Rate",100f/Float.parseFloat(value));
+                }else if(str.equals("欧元")){
+                    bundle.putFloat("Euro_Rate",100f/Float.parseFloat(value));
+                }else if(str.equals("yingb")){
+                    bundle.putFloat("Pound_Rate",100f/Float.parseFloat(value));
+                }
+
+            }
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+     //获取Message对象，用于返回主线程
+     Message msg=handler.obtainMessage(5);
+      msg.obj=bundle;
+     handler.sendMessage(msg);
 
 
-
+    }
+    //获取网页输入
+    private String inputStreamString(InputStream inputStream)throws IOException{
+        final int bufferSize=1024;
+        final char[] buffer=new char[bufferSize];
+        final StringBuilder out=new StringBuilder();
+        Reader in=new InputStreamReader(inputStream,"gb2312");
+        for(;;){
+            int rsc=in.read(buffer,0,buffer.length);
+            if(rsc<0) break;
+            out.append(buffer,0,rsc);
+        }
+        return out.toString();
     }
 
 }
