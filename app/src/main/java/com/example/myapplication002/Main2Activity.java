@@ -31,7 +31,7 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
     private Float EuroRate;
     private  Float PoundRate;
     Handler handler;
-    Bundle bundle;
+
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -39,7 +39,7 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        rmb = (EditText) findViewById(R.id.RMB);
+        rmb = (EditText) findViewById(R.id.SEARCH);
         currency = (TextView) findViewById(R.id.Currency);
 
         SharedPreferences share = getSharedPreferences("MyRate", Activity.MODE_PRIVATE);
@@ -51,6 +51,8 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
         //开启子线程
         Thread t = new Thread(this);
         t.start();
+
+
         handler = new Handler() {
             public void handerMessage(Message msg) {
                 if (msg.what == 5) {
@@ -121,7 +123,7 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
             editor.putFloat("Dollar_Rate",DollarRate);
             editor.putFloat("Euro_Rate",EuroRate);
             editor.putFloat("Pound_Rate",PoundRate);
-            editor.commit();
+            editor.apply();
 
 
 
@@ -140,24 +142,13 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
           }
         }
 
-       /* URL url=null;
-        try{
-            url=new URL("http://www.usd-cny.com/icbc.htm");
-            HttpURLConnection http =(HttpURLConnection)url.openConnection();
-            InputStream in=http.getInputStream();
+        
 
-            String html=inputStreamString(in);
-
-        }catch(MalformedURLException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }*/
+        Bundle bundle=new Bundle();
 
         Document doc=null;
         try{
-
-            doc= Jsoup.connect("www.usd-cny.com/bankofchina.htm").get();
+            doc= Jsoup.connect("http://www.usd-cny.com/bankofchina.htm").get();
             Elements tables=doc.getElementsByTag("table");
 
             Element table6=tables.get(5);
@@ -165,14 +156,15 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
             for(int i=0;i<tds.size();i+=8){
                 Element td1=tds.get(i);
                 Element td2=tds.get(i+5);
+
                 String str=td1.text();
                 String value=td2.text();
 
-                if(str.equals("美元")){
+                if("美元".equals(str)){
                     bundle.putFloat("Dollar_Rate",100f/Float.parseFloat(value));
-                }else if(str.equals("欧元")){
+                }else if("欧元".equals(str)){
                     bundle.putFloat("Euro_Rate",100f/Float.parseFloat(value));
-                }else if(str.equals("yingb")){
+                }else if("英镑".equals(str)){
                     bundle.putFloat("Pound_Rate",100f/Float.parseFloat(value));
                 }
 
@@ -197,7 +189,8 @@ public class Main2Activity extends AppCompatActivity implements Runnable{
         Reader in=new InputStreamReader(inputStream,"gb2312");
         for(;;){
             int rsc=in.read(buffer,0,buffer.length);
-            if(rsc<0) break;
+            if(rsc<0)
+                break;
             out.append(buffer,0,rsc);
         }
         return out.toString();

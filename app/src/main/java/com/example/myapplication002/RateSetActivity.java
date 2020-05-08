@@ -23,7 +23,7 @@ public class RateSetActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         float Dor=intent.getFloatExtra("rate_of_Dollar",0.0f);
-        float Eur=intent.getFloatExtra("rate_od_Euro",0.0f);
+        float Eur=intent.getFloatExtra("rate_of_Euro",0.0f);
         float Pnd=intent.getFloatExtra("rate_of_Pound",0.0f);
         //接收数据
 
