@@ -1,13 +1,13 @@
 package com.example.myapplication002;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.SimpleAdapter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,11 +18,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class PageActivity extends AppCompatActivity {
+public class PageActivity extends ListActivity {
     EditText search;
     ListView Result;
     private String target[];
+    private ArrayList<HashMap<String,String>> listItems;
+    private SimpleAdapter listItemAdapter; //适配器
+    private int msgwhat=7;
+
     Handler handler;
 
 
@@ -74,17 +80,6 @@ public class PageActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-               // if("美元".equals(str)){
-               //     bundle.putFloat("Dollar_Rate",100f/Float.parseFloat(value));
-               // }else if("欧元".equals(str)){
-                //    bundle.putFloat("Euro_Rate",100f/Float.parseFloat(value));
-               // }else if("英镑".equals(str)){
-                //    bundle.putFloat("Pound_Rate",100f/Float.parseFloat(value));
-               // }
 
             }
 
