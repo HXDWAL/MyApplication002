@@ -1,2 +1,3 @@
-# MyApplication002
-My second application
+项目：移动开发与创业课程项目
+姓名：项俊
+学号：41811013
