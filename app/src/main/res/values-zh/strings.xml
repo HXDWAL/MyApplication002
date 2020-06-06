@@ -24,4 +24,5 @@
     <string name="SET">设置</string>
     <string name="SAVE">保存</string>
     <string name="BACK">返回</string>
+    <string name="StartGame">开始游戏</string>
 </resources>
