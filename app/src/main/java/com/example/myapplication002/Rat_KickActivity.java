@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Rat_KickActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,15 +20,17 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
     private TextView timeshow; //用handler写一个计时器方法，判断剩余时间；
     private ImageView rat; //用于触发事件，击中老鼠后老鼠消失，随机生成新的位置，并且分数增加；
     int height;//定义屏幕高度
+    int width;//屏幕宽度
     int Score=0;
     int Time=10; //初始化游戏的分数和时间变量
+
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             if(msg.what==100){
                 int time=msg.arg1;
-                if(Time>0){
+                if(time>0){
                     timeshow.setText(time+"");
                 }else{
                     btn.setVisibility(View.VISIBLE);
@@ -59,6 +62,60 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
         rat=(ImageView)findViewById(R.id.Rat);
         //初始化控件
 
-        DisplayMetrics metrics=getResources().
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        this.width=metrics.widthPixels;
+        this.height=metrics.heightPixels;
+        Log.i("tag111","onCreate：屏幕的height=="+this.height+"width=="+this.width);
+        //获取屏幕的宽度和高度
+
+        btn.setOnClickListener(this);
+        rat.setOnClickListener(this);
+        rat.setClickable(false);
+        //设置触发事件
+
+    }
+    @Override
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.Start_btn:  //开始游戏点击
+                rat.setClickable(true);
+                rat.setX(width/2);
+                rat.setY(height/2); //设置地鼠的初始坐标
+                btn.setVisibility(View.INVISIBLE);
+                startCountDown(); //开始倒计时
+                break;
+            case R.id.Rat:
+                rat.setVisibility(View.INVISIBLE);
+                Score++;
+                Message msg=new Message();
+                msg.what=200;
+                msg.arg1=(int)(Math.random()*(width-400)+200);
+                msg.arg2=(int)(Math.random()*(height-400)+200);
+                //随机生成地鼠下一次出现的位置
+
+                    handler.sendMessageDelayed(msg,200); //发送消息通知地鼠的出现
+                    break;
+
+        }
+    }
+
+    public void startCountDown(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i=Time-1;i>=0;i--){
+                    try{
+                        Thread.sleep(1000);
+                        //向子线程发送一条消息
+                        Message msg=new Message();
+                        msg.what=100;
+                        msg.arg1=i;
+                        handler.sendMessage(msg);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 }
