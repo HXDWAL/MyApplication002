@@ -40,4 +40,13 @@
         android:layout_marginRight="10dp"
         android:layout_alignBottom="@id/Points"/>
 
+    <Button
+        android:id="@+id/rank_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Start_btn"
+        android:layout_marginTop="36dp"
+        android:onClick="showRank"
+        android:text="@string/MyRank" />
+
 </RelativeLayout>

@@ -20,6 +20,8 @@ public class RateSetActivity extends AppCompatActivity {
         DollarRate=(EditText)findViewById(R.id.dollarRate);
         EuroRate=(EditText)findViewById(R.id.euroRate);
         PoundRate=(EditText)findViewById(R.id.poundRate);
+        //初始化控件
+
 
         Intent intent=getIntent();
         float Dor=intent.getFloatExtra("rate_of_Dollar",0.0f);

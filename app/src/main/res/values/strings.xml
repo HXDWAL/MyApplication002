@@ -24,4 +24,5 @@
     <string name="SAVE">Save</string>
     <string name="BACK">Back</string>
     <string name="StartGame">StartGame</string>
+    <string name="MyRank">RANK</string>
 </resources>
