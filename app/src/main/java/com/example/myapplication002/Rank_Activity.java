@@ -1,6 +1,8 @@
 package com.example.myapplication002;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ public class Rank_Activity extends AppCompatActivity {
     TextView Top2;
     TextView Top3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,24 +24,16 @@ public class Rank_Activity extends AppCompatActivity {
         Top2=(TextView)findViewById(R.id.top2);
         Top3=(TextView)findViewById(R.id.top3);
 
-        int a=Integer.parseInt(Top1.getText().toString());
-        int b=Integer.parseInt(Top2.getText().toString());
-        int c=Integer.parseInt(Top3.getText().toString());
 
 
         Intent intent=getIntent();
-        int record=intent.getIntExtra("New_Score",0);
+        SharedPreferences share=getSharedPreferences("MyRank", Activity.MODE_PRIVATE);
 
-        if (record>=a){
-            Top1.setText(""+record);
-            Top2.setText(""+a);
-            Top3.setText(""+b);
-        }else if(record>=b){
-            Top2.setText(""+record);
-            Top3.setText(""+b);
-        }else if(record>=c){
-            Top3.setText(""+record);
-        }
+
+        Top1.setText(""+share.getInt("New_record01",0));
+        Top2.setText(""+share.getInt("New_record02",0));
+        Top3.setText(""+share.getInt("New_record03",0));
+
     }
 
     public void Return(View btn){

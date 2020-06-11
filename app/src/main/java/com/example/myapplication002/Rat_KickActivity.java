@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Rat_KickActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,7 +45,31 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(Rat_KickActivity.this, "游戏结束", Toast.LENGTH_SHORT).show();
                     //若时间已到，则还原按钮初始状态，并且设置地鼠为不可点击，游戏结束
                     Record=Score;
-                    Score=0; //将分数值传给Record，之后分数归零
+                    Score=0;
+                    //将分数值传给Record，之后分数归零
+
+                    SharedPreferences share=getSharedPreferences("MyRank", Activity.MODE_PRIVATE);
+                    int a=share.getInt("New_record01",0);
+                    int b=share.getInt("New_record02",0);
+                    int c=share.getInt("New_record03",0);
+                    if(Record>a||Record>b||Record>c){
+                        if (Record>a){
+                            c=b;
+                            b=a;
+                            a=Record;
+                        }else if (Record>b){
+                            c=b;
+                            b=Record;
+                        }else{
+                            c=Record;
+                        }
+                    }
+                    //更新SP文件数据
+                    SharedPreferences.Editor editor=share.edit();
+                    editor.putInt("New_record01",a);
+                    editor.putInt("New_record02",b);
+                    editor.putInt("New_record03",c);
+                    editor.commit();
 
                 }
             }else if(msg.what==200){
@@ -87,8 +110,11 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
 
         //创建Sp文件MyRank用以保存分数记录
         SharedPreferences share=getSharedPreferences("MyRank", Activity.MODE_PRIVATE);
-
-
+        SharedPreferences.Editor editor=share.edit();
+        editor.putInt("New_record01",0);
+        editor.putInt("New_record02",0);
+        editor.putInt("New_record03",0);
+        editor.commit();
 
 
     }
@@ -120,9 +146,7 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void showRank(View btn){
-        //向排行榜页面传值
         Intent show=new Intent(this,Rank_Activity.class);
-        show.putExtra("New_Score",Record);
         startActivity(show);
     }
 
