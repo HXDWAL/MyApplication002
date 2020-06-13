@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_launcher">
+    android:background="@mipmap/grass01">
 
     <ImageView
         android:id="@+id/Rat"
@@ -39,14 +39,5 @@
         android:textSize="28sp"
         android:layout_marginRight="10dp"
         android:layout_alignBottom="@id/Points"/>
-
-    <Button
-        android:id="@+id/rank_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Start_btn"
-        android:layout_marginTop="36dp"
-        android:onClick="showRank"
-        android:text="@string/MyRank" />
 
 </RelativeLayout>

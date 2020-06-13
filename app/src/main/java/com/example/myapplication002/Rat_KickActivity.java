@@ -1,5 +1,6 @@
 package com.example.myapplication002;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,12 +9,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Rat_KickActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +33,7 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
     int Record=0;
     int Time=10; //初始化游戏的分数和时间变量
 
+    @SuppressLint("HandlerLeak")
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg){
@@ -39,7 +44,6 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
                     timeshow.setText(time+"");
                 }else{
                     btn.setVisibility(View.VISIBLE);
-                    rank.setVisibility(View.VISIBLE);
                     timeshow.setText(""+10);
                     rat.setClickable(false);
                     Toast.makeText(Rat_KickActivity.this, "游戏结束", Toast.LENGTH_SHORT).show();
@@ -78,6 +82,7 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
                 Log.i("tag111","地鼠的位置x："+x+"地鼠的位置y:"+y);
                 scoreshow.setText(Score+"分");
                 rat.setVisibility(View.VISIBLE);
+                rat.setImageResource(R.drawable.rat);
                 rat.setX(x);
                 rat.setY(y);
                 //成功击中地鼠后重置地鼠的位置，并进行加分
@@ -90,7 +95,6 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat__kick);
         btn=(Button)findViewById(R.id.Start_btn);
-        rank=(Button)findViewById(R.id.rank_btn);
         scoreshow=(TextView)findViewById(R.id.Points);
         timeshow=(TextView)findViewById(R.id.Time_Show);
         rat=(ImageView)findViewById(R.id.Rat);
@@ -118,20 +122,39 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+       return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.Rank){
+            Rank_Show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onClick(View view){
+        game_run(view);
+    }
+
+    private void game_run(View view) {
         switch (view.getId()){
             case R.id.Start_btn:  //开始游戏点击
                 rat.setClickable(true);
                 rat.setX(width/2);
                 rat.setY(height/2); //设置地鼠的初始坐标
                 btn.setVisibility(View.INVISIBLE);
-                rank.setVisibility(View.INVISIBLE);
                 startCountDown(); //开始倒计时
                 break;
 
             case R.id.Rat:
-                rat.setVisibility(View.INVISIBLE);
+                rat.setImageResource(R.drawable.rat_hit);
+//                rat.setVisibility(View.INVISIBLE);
                 Score++;
                 Message msg=new Message();
                 msg.what=200;
@@ -145,8 +168,9 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    public void showRank(View btn){
-        Intent show=new Intent(this,Rank_Activity.class);
+
+    private void Rank_Show() {
+        Intent show=new Intent(this, Rank_Activity.class);
         startActivity(show);
     }
 
