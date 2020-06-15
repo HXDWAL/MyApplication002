@@ -23,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Rat_KickActivity extends AppCompatActivity implements View.OnClickListener {
     //开始游戏，点击按纽后地鼠作为一个可点击对象出现在屏幕中央，并且会随着倒计时的结束而消失
     private Button btn;
-    private Button rank;
     private TextView scoreshow; //击中地鼠后加分
     private TextView timeshow; //用handler写一个计时器方法，判断剩余时间
     private ImageView rat; //用于触发事件，击中老鼠后老鼠消失，随机生成新的位置，并且分数增加
@@ -131,8 +130,12 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //设置菜单选项触发事件
         if(item.getItemId()==R.id.Rank){
             Rank_Show();
+        }
+        if(item.getItemId()==R.id.action_settings){
+            Time_Set();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -174,7 +177,15 @@ public class Rat_KickActivity extends AppCompatActivity implements View.OnClickL
         startActivity(show);
     }
 
+    private  void Time_Set(){
+        Intent time_set=new Intent(this,TimeSet_Activity.class);
+        startActivity(time_set);
+    }
+
+
     public void startCountDown(){
+        SharedPreferences share=getSharedPreferences("MyRank",Activity.MODE_PRIVATE);
+        Time=share.getInt("Time",10);
         new Thread(new Runnable() {
             @Override
             public void run() {
