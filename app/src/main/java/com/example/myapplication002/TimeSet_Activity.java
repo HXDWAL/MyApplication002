@@ -19,21 +19,22 @@ public class TimeSet_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_set_);
 
-        timeinput=(EditText)findViewById(R.id.TIME);
-        time=(TextView)findViewById(R.id.textViewtime);
+        timeinput = (EditText) findViewById(R.id.TIME);
+        time = (TextView) findViewById(R.id.textViewtime);
 
     }
 
-    public void Return(View btn){
-        int a=Integer.parseInt(timeinput.getText().toString());
+    public void Return(View btn) {
 
-        SharedPreferences share=getSharedPreferences("MyRank", Activity.MODE_PRIVATE);
-        SharedPreferences.Editor editor=share.edit();
-        editor.putInt("Time",a);
-        editor.commit();
+            int a = Integer.parseInt(timeinput.getText().toString());
 
-        finish();
-    }
+            SharedPreferences share = getSharedPreferences("MyRank", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = share.edit();
+            editor.putInt("Time", a);
+            editor.commit();
+            finish();
+
+            }
 
 
 }
